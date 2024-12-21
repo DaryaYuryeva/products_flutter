@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:products_flutter/screens/cart_screen.dart';
-import 'package:products_flutter/screens/products_screen.dart';
+
+import '../data_source/mock_data.dart';
+import 'cart_screen.dart';
+import 'products_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({super.key});
@@ -10,7 +12,7 @@ class NavigationScreen extends StatefulWidget {
 }
 
 class _NavigationScreenState extends State<NavigationScreen> {
-  int currentPageIndex = 0;
+  int _currentPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +20,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
-            currentPageIndex = index;
+            _currentPageIndex = index;
           });
         },
-        selectedIndex: currentPageIndex,
+        selectedIndex: _currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
             selectedIcon: Icon(Icons.home),
@@ -30,18 +32,17 @@ class _NavigationScreenState extends State<NavigationScreen> {
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.shopping_cart),
-            icon: Badge(
-              label: Text('1'),
-              child: Icon(Icons.shopping_cart_outlined),
-            ),
+            icon: Icon(Icons.shopping_cart_outlined),
             label: 'Cart',
           ),
         ],
       ),
-      body: const <Widget>[
-        ProductsScreen(),
-        CartScreen(),
-      ][currentPageIndex],
+      body: <Widget>[
+        ProductsScreen(
+          products: mockData,
+        ),
+        const CartScreen(),
+      ][_currentPageIndex],
     );
   }
 }
