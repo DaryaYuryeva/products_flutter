@@ -1,0 +1,1 @@
+const baseUrlString = 'https://dummyjson.com/products';
