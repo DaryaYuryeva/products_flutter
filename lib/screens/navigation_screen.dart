@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../data_source/mock_data.dart';
 import 'cart_screen.dart';
 import 'products_screen.dart';
 
@@ -38,9 +37,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
         ],
       ),
       body: <Widget>[
-        ProductsScreen(
-          products: mockData,
-        ),
+        const ProductsScreen(),
         const CartScreen(),
       ][_currentPageIndex],
     );

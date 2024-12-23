@@ -1,4 +1,4 @@
-import '../product.dart';
+import '../products/product.dart';
 
 class ShoppingCartItem {
   final Product product;

@@ -1,4 +1,4 @@
-import '../model/product.dart';
+import '../models/products/product.dart';
 
 final List<Product> mockData = [
   const Product(

@@ -2,16 +2,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../core/constants.dart';
-import '../../model/product.dart';
+import '../../models/products/product.dart';
+import '../../models/products/products.dart';
 
 abstract class ProductsRemoteDataSource {
-  Future<List<Product>> getProducts();
+  Future<List<Product>> loadProducts();
 }
 
 class ProductsRemoteDataSourceImpl implements ProductsRemoteDataSource {
-
   @override
-  Future<List<Product>> getProducts() async {
+  Future<List<Product>> loadProducts() async {
     final url = Uri.parse(baseUrlString);
     final response = await http.get(url);
 

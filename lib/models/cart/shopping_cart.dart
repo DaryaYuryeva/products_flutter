@@ -6,4 +6,8 @@ class ShoppingCart {
   const ShoppingCart({
     required this.items,
   });
+
+  factory ShoppingCart.empty() {
+    return const ShoppingCart(items: []);
+  }
 }
