@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../model/product.dart';
+import '../bloc/products/products_cubit.dart';
+import '../models/products/product.dart';
+import '../views/common/loading_indicator.dart';
 import '../views/products/product_card_widget.dart';
 
 class ProductsScreen extends StatefulWidget {
-  final List<Product> products;
-
   const ProductsScreen({
     super.key,
-    required this.products,
   });
 
   @override
@@ -22,17 +22,22 @@ class _ProductsScreenState extends State<ProductsScreen> {
       appBar: AppBar(
         title: const Text('Products'),
       ),
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Number of columns
-        ),
-        itemCount: widget.products.length,
-        itemBuilder: (context, index) {
-          return ProductCardWidget(
-            product: widget.products[index],
-          );
-        },
-      ),
+      body: BlocBuilder<ProductsCubit, List<Product>>(builder: (context, products) {
+       if (products.isNotEmpty) {
+         return GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2, // Number of columns
+          ),
+          itemCount: products.length,
+          itemBuilder: (context, index) {
+            return ProductCardWidget(
+              product: products[index],
+            );
+          },
+        );
+       }
+       return const LoadingIndicator();
+      }),
     );
   }
 }
