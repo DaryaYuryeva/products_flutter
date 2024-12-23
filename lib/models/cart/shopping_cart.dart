@@ -1,13 +1,18 @@
 import 'shopping_cart_item.dart';
 
 class ShoppingCart {
-  final List<ShoppingCartItem> items;
+  List<ShoppingCartItem> items;
 
-  const ShoppingCart({
+  ShoppingCart({
     required this.items,
   });
 
   factory ShoppingCart.empty() {
-    return const ShoppingCart(items: []);
+    return ShoppingCart(items: []);
+  }
+
+  @override
+  String toString() {
+    return '$items';
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 enum PlusMinusButtonType { plus, minus }
 
-class PlusMinusButton extends StatefulWidget {
+class PlusMinusButton extends StatelessWidget {
   final PlusMinusButtonType buttonType;
   final Function() action;
 
@@ -13,23 +13,22 @@ class PlusMinusButton extends StatefulWidget {
   });
 
   @override
-  State<PlusMinusButton> createState() => _PlusMinusButtonState();
-}
-
-class _PlusMinusButtonState extends State<PlusMinusButton> {
-  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
         backgroundColor: theme.colorScheme.primary,
         foregroundColor: theme.colorScheme.surface,
       ),
-      onPressed: widget.action,
-      child: widget.buttonType == PlusMinusButtonType.plus
-          ? const Text('+')
-          : const Text('-'),
+      onPressed: action,
+      child: switch (buttonType) {
+        PlusMinusButtonType.plus => const Text('+'),
+        PlusMinusButtonType.minus => const Text('-'),
+      },
     );
   }
 }

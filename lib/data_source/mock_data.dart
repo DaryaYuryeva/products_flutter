@@ -1,6 +1,8 @@
+import '../models/cart/shopping_cart.dart';
+import '../models/cart/shopping_cart_item.dart';
 import '../models/products/product.dart';
 
-final List<Product> mockData = [
+List<Product> productListMockData = [
   const Product(
     id: 1,
     title: 'title 1',
@@ -10,7 +12,7 @@ final List<Product> mockData = [
       'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png'
     ],
     thumbnail:
-    'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png',
+        'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png',
   ),
   const Product(
     id: 2,
@@ -21,7 +23,7 @@ final List<Product> mockData = [
       'https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png'
     ],
     thumbnail:
-    'https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png',
+        'https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png',
   ),
   const Product(
     id: 3,
@@ -32,7 +34,7 @@ final List<Product> mockData = [
       'https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png'
     ],
     thumbnail:
-    'https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png',
+        'https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png',
   ),
   const Product(
     id: 4,
@@ -43,6 +45,19 @@ final List<Product> mockData = [
       'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png'
     ],
     thumbnail:
-    'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png',
+        'https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png',
   ),
 ];
+
+ShoppingCart shoppingCartMockData = ShoppingCart(
+  items: [
+    ShoppingCartItem(
+      product: productListMockData[1],
+      quantity: 2,
+    ),
+    ShoppingCartItem(
+      product: productListMockData[2],
+      quantity: 1,
+    ),
+  ],
+);

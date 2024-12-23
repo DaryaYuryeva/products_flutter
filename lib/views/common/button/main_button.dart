@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MainButton extends StatefulWidget {
+class MainButton extends StatelessWidget {
   final String title;
   final Function() action;
 
@@ -9,12 +9,6 @@ class MainButton extends StatefulWidget {
     required this.title,
     required this.action,
   });
-
-  @override
-  State<MainButton> createState() => _MainButtonState();
-}
-
-class _MainButtonState extends State<MainButton> {
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +26,8 @@ class _MainButtonState extends State<MainButton> {
           backgroundColor: theme.colorScheme.primary,
           foregroundColor: theme.colorScheme.surface,
         ),
-        onPressed: widget.action,
-        child: Text(widget.title),
+        onPressed: action,
+        child: Text(title),
       ),
     );
   }

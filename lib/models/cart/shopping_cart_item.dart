@@ -1,11 +1,16 @@
 import '../products/product.dart';
 
 class ShoppingCartItem {
-  final Product product;
-  final int quantity;
+  Product product;
+  int quantity;
 
-  const ShoppingCartItem({
+  ShoppingCartItem({
     required this.product,
     required this.quantity,
   });
+
+  @override
+  String toString() {
+    return 'product: $product, quantity: $quantity ;';
+  }
 }

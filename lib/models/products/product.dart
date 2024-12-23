@@ -25,4 +25,9 @@ class Product {
       thumbnail: json['thumbnail'],
     );
   }
+
+  @override
+  String toString() {
+    return 'id: $id, title: $title';
+  }
 }
