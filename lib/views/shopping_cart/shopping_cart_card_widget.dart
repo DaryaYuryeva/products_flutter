@@ -21,9 +21,12 @@ class ShoppingCartCardWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SingleImageWidget(
-            width: 100,
-            imageUrlString: product.images.first,
+          Expanded(
+            child: SingleImageWidget(
+              width: 150,
+              height: 120,
+              imageUrlString: product.images.first,
+            ),
           ),
           Expanded(
             child: Column(
