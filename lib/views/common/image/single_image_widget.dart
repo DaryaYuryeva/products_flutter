@@ -26,7 +26,6 @@ class _SingleImageWidgetState extends State<SingleImageWidget> {
       child: CachedNetworkImage(
         width: widget.width,
         height: widget.height,
-        fit: BoxFit.cover,
         imageUrl: widget.imageUrlString,
         placeholder: (context, url) => const LoadingIndicator(),
         errorWidget: (context, url, error) => const Icon(Icons.error),

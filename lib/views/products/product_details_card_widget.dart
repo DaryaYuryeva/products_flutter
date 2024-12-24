@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/cart/cart_cubit.dart';
-import '../../models/cart/shopping_cart_item.dart';
 import '../../models/products/product.dart';
-import '../common/button/main_button.dart';
+import '../add_to_cart/add/add_to_cart_widget.dart';
 import '../common/image/single_image_widget.dart';
 
 class ProductDetailsCardWidget extends StatelessWidget {
@@ -20,26 +17,41 @@ class ProductDetailsCardWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Card(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SingleImageWidget(
-              imageUrlString: product.images.first,
-              width: 300,
-              height: 300,
-            ),
-            Text(product.title),
-            Text(product.description),
-            Text(product.price.toString()),
-            MainButton(
-              title: 'Add to cart',
-              action: () {
-                context.read<CartCubit>().addProductToCart(
-                  ShoppingCartItem(product: product, quantity: 1),
-                );
-              },
-            ),
-          ],
+        child: Container(
+          padding: const EdgeInsets.only(
+            left: 20,
+            right: 20,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: SingleImageWidget(
+                  imageUrlString: product.images.first,
+                ),
+              ),
+              Text(
+                product.title,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Text(
+                product.description,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              Container(
+                height: 30,
+              ),
+              Text(
+                '${product.price}',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const Spacer(),
+              AddToCartWidget(
+                product: product,
+              ),
+              const Spacer(),
+            ],
+          ),
         ),
       ),
     );

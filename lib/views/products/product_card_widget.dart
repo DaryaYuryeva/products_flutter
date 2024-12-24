@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/cart/cart_cubit.dart';
-import '../../models/cart/shopping_cart_item.dart';
 import '../../models/products/product.dart';
-import '../common/button/main_button.dart';
+import '../add_to_cart/add/add_to_cart_widget.dart';
 import '../common/image/single_image_widget.dart';
 import 'product_details_card_widget.dart';
 
@@ -37,18 +34,16 @@ class ProductCardWidget extends StatelessWidget {
                 imageUrlString: product.thumbnail,
               ),
             ),
-            Text(product.title),
-            Text(product.price.toString()),
-            MainButton(
-              title: 'Add to cart',
-              action: () {
-                context.read<CartCubit>().addProductToCart(
-                      ShoppingCartItem(
-                        product: product,
-                        quantity: 1,
-                      ),
-                    );
-              },
+            Text(
+              product.title,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            Text(
+              '${product.price}',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            AddToCartWidget(
+              product: product,
             ),
           ],
         ),

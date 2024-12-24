@@ -16,8 +16,8 @@ class PlusMinusButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
+    return IconButton(
+      style: IconButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -25,9 +25,9 @@ class PlusMinusButton extends StatelessWidget {
         foregroundColor: theme.colorScheme.surface,
       ),
       onPressed: action,
-      child: switch (buttonType) {
-        PlusMinusButtonType.plus => const Text('+'),
-        PlusMinusButtonType.minus => const Text('-'),
+      icon: switch (buttonType) {
+        PlusMinusButtonType.plus => const Icon(Icons.add),
+        PlusMinusButtonType.minus => const Icon(Icons.remove),
       },
     );
   }

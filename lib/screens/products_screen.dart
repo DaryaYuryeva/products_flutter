@@ -13,7 +13,10 @@ class ProductsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Products'),
+        title: Text(
+          'Products',
+          style: Theme.of(context).textTheme.displaySmall,
+        ),
       ),
       body: BlocBuilder<ProductsCubit, List<Product>>(
         builder: (context, products) {

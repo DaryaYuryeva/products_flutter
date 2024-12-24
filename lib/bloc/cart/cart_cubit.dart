@@ -2,39 +2,39 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../models/cart/shopping_cart.dart';
 import '../../models/cart/shopping_cart_item.dart';
+import '../../models/products/product.dart';
 
 class CartCubit extends Cubit<ShoppingCart> {
   CartCubit() : super(ShoppingCart.empty());
 
-  void addProductToCart(ShoppingCartItem item) {
-    final cartItems = state.items;
+  void addProductToCart(Product product) {
+    final items = state.items;
 
-    if (cartItems.contains(item)) {
-      cartItems.map((e) {
-        if (e.product == item.product) {
-          e.quantity += 1;
-        }
-      },);
-    } else {
-      cartItems.add(item);
-    }
-    emit(ShoppingCart(items: cartItems));
+    final existingItem = items.firstWhere(
+      (item) => item.product.id == product.id,
+      orElse: () => ShoppingCartItem(product: product, quantity: 0),
+    );
+
+    existingItem.quantity == 0
+        ? items.add(ShoppingCartItem(product: product, quantity: 1))
+        : existingItem.quantity++;
+
+    emit(ShoppingCart(items: items));
   }
 
-  void removeProductFromCart(ShoppingCartItem item) {
-    final cartItems = state.items;
+  void removeProductFromCart(Product product) {
+    final items = state.items;
 
-    if (cartItems.contains(item)) {
-      cartItems.map((e) {
-        if (e.product == item.product && e.quantity != 1) {
-          e.quantity -= 1;
-        } else {
-          cartItems.remove(item);
-        }
-      });
-    }
+    final existingItem = items.firstWhere(
+      (item) => item.product.id == product.id,
+      orElse: () => ShoppingCartItem(product: product, quantity: 0),
+    );
 
-    emit(ShoppingCart(items: cartItems));
+    existingItem.quantity > 1
+        ? existingItem.quantity--
+        : items.remove(existingItem);
+
+    emit(ShoppingCart(items: items));
   }
 
   @override

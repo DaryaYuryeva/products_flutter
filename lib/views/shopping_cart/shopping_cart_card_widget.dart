@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../models/cart/shopping_cart_item.dart';
+import '../add_to_cart/change_quantity/quantity_widget.dart';
 import '../common/image/single_image_widget.dart';
-import '../common/quantity_widget.dart';
 
 class ShoppingCartCardWidget extends StatelessWidget {
   final ShoppingCartItem item;
@@ -25,15 +25,22 @@ class ShoppingCartCardWidget extends StatelessWidget {
             width: 100,
             imageUrlString: product.images.first,
           ),
-          const Spacer(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(product.title),
-              Text(product.price.toString()),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  product.title,
+                  style: Theme.of(context).textTheme.titleMedium,
+                  //maxLines: 2,
+                ),
+                Text(
+                  '${product.price}',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
           ),
-          const Spacer(),
           QuantityWidget(
             item: item,
           ),

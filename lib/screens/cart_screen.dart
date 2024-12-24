@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/cart/cart_cubit.dart';
 import '../models/cart/shopping_cart.dart';
+import '../views/shopping_cart/empty_cart_widget.dart';
 import '../views/shopping_cart/shopping_cart_card_widget.dart';
 
 class CartScreen extends StatelessWidget {
@@ -12,24 +13,24 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cart'),
+        title: Text(
+          'Cart',
+          style: Theme.of(context).textTheme.displaySmall,
+        ),
       ),
       body: BlocBuilder<CartCubit, ShoppingCart>(
         builder: (context, cart) {
-          final shoppingCartItems = cart.items;
-          if (shoppingCartItems.isNotEmpty) {
+          if (cart.items.isNotEmpty) {
             return ListView.builder(
-              itemCount: shoppingCartItems.length,
+              itemCount: cart.items.length,
               itemBuilder: (context, index) {
                 return ShoppingCartCardWidget(
-                  item: shoppingCartItems[index],
+                  item: cart.items[index],
                 );
               },
             );
           }
-          return const Center(
-            child: Text('Cart is empty'),
-          );
+          return const EmptyCartWidget();
         },
       ),
     );

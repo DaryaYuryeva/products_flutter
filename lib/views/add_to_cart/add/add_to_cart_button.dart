@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MainButton extends StatelessWidget {
-  final String title;
-  final Function() action;
+import '../../../../bloc/cart/cart_cubit.dart';
+import '../../../models/products/product.dart';
 
-  const MainButton({
+class AddToCartButton extends StatelessWidget {
+  final Product product;
+
+  const AddToCartButton({
     super.key,
-    required this.title,
-    required this.action,
+    required this.product,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      padding: const EdgeInsets.only(left: 10, right: 10,),
+    return SizedBox(
       width: double.infinity,
-
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
@@ -26,8 +26,10 @@ class MainButton extends StatelessWidget {
           backgroundColor: theme.colorScheme.primary,
           foregroundColor: theme.colorScheme.surface,
         ),
-        onPressed: action,
-        child: Text(title),
+        onPressed: () {
+          context.read<CartCubit>().addProductToCart(product);
+        },
+        child: const Text('Add to cart'),
       ),
     );
   }
