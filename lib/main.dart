@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/cart/cart_cubit.dart';
 import 'bloc/products/products_cubit.dart';
 import 'data_source/local/cart_local_database.dart';
+import 'data_source/remote/products_remote_data_source.dart';
 import 'get_it/injection_container.dart' as di;
 import 'get_it/injection_container.dart';
 import 'screens/navigation_screen.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => ProductsCubit()..getProducts(),
+          create: (_) => ProductsCubit(getIt<ProductsRemoteDataSource>()),
         ),
         BlocProvider(
           create: (_) => CartCubit(getIt<CartLocalDatabase>()),

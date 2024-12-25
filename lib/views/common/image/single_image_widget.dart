@@ -28,7 +28,10 @@ class _SingleImageWidgetState extends State<SingleImageWidget> {
         height: widget.height,
         imageUrl: widget.imageUrlString,
         placeholder: (context, url) => const LoadingIndicator(),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
+        errorWidget: (context, url, error) => const Icon(
+          Icons.image_not_supported_outlined,
+          size: 100,
+        ),
       ),
     );
   }

@@ -37,6 +37,7 @@ class ProductCardWidget extends StatelessWidget {
             Text(
               product.title,
               style: Theme.of(context).textTheme.titleMedium,
+              textAlign: TextAlign.center,
             ),
             Text(
               '${product.price}',

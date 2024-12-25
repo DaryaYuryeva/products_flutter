@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 import '../../models/cart/shopping_cart_item.dart';
 
 class CartLocalDatabase {
-static const _tableName = 'shopping_cart';
+  static const _tableName = 'shopping_cart';
 
   Future<Database> _getCartDatabase() async {
     final dbPath = await getDatabasesPath();

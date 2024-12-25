@@ -7,7 +7,10 @@ final getIt = GetIt.instance;
 
 Future<void> init() async {
   getIt.registerSingleton<ProductsRemoteDataSource>(
-      ProductsRemoteDataSourceImpl());
+    ProductsRemoteDataSourceImpl(),
+  );
 
-  getIt.registerSingleton<CartLocalDatabase>(CartLocalDatabase());
+  getIt.registerSingleton<CartLocalDatabase>(
+    CartLocalDatabase(),
+  );
 }

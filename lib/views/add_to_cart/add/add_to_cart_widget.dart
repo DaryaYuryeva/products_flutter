@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../bloc/cart/cart_cubit.dart';
 import '../../../../models/products/product.dart';
-import '../../../models/cart/shopping_cart.dart';
 import '../../../models/cart/shopping_cart_item.dart';
 import '../change_quantity/quantity_widget.dart';
 import 'add_to_cart_button.dart';
@@ -18,18 +17,13 @@ class AddToCartWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CartCubit, ShoppingCart>(
-      builder: (context, cart) {
-        final cartItem = cart.items.firstWhere(
-          (item) => item.product.id == product.id,
-          orElse: () => ShoppingCartItem(product: product, quantity: 0),
-        );
-        if (cartItem.quantity == 0) {
-          return AddToCartButton(product: product);
-        } else {
-          return QuantityWidget(item: cartItem);
-        }
-      },
+    final cartItems = context.watch<CartCubit>().state.items;
+    final cartItem = cartItems.firstWhere(
+      (item) => item.product.id == product.id,
+      orElse: () => ShoppingCartItem(product: product, quantity: 0),
     );
+    return (cartItem.quantity == 0)
+        ? AddToCartButton(product: product)
+        : QuantityWidget(item: cartItem);
   }
 }

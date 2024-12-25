@@ -1,18 +1,23 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data_source/remote/products_remote_data_source.dart';
-import '../../get_it/injection_container.dart';
-import '../../models/products/product.dart';
+import 'products_state.dart';
 
-class ProductsCubit extends Cubit<List<Product>> {
-  ProductsCubit() : super([]);
+class ProductsCubit extends Cubit<ProductsState> {
+  final ProductsRemoteDataSource dataSource;
+
+  ProductsCubit(this.dataSource) : super(ProductsInitial()) {
+    getProducts();
+  }
 
   Future<void> getProducts() async {
+    emit(ProductsLoading());
+
     try {
-      final products = await getIt<ProductsRemoteDataSource>().loadProducts();
-      emit(products);
-    } catch (e) {
-      emit([]);
+      final products = await dataSource.loadProducts();
+      emit(ProductsLoaded(products: products));
+    } catch (error) {
+      emit(ProductsFailed(errorMessage: error.toString()));
     }
   }
 }
