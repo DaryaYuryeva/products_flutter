@@ -13,6 +13,6 @@ class ShoppingCart {
 
   @override
   String toString() {
-    return '$items';
+    return 'ShoppingCart - { $items }';
   }
 }

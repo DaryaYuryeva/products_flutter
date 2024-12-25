@@ -26,8 +26,19 @@ class Product {
     );
   }
 
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'price': price,
+      'images': images.join(','),
+      'thumbnail': thumbnail,
+    };
+  }
+
   @override
   String toString() {
-    return 'id: $id, title: $title';
+    return 'Product - { id: $id, title: $title}';
   }
 }

@@ -1,13 +1,23 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data_source/local/cart_local_database.dart';
 import '../../models/cart/shopping_cart.dart';
 import '../../models/cart/shopping_cart_item.dart';
 import '../../models/products/product.dart';
 
 class CartCubit extends Cubit<ShoppingCart> {
-  CartCubit() : super(ShoppingCart.empty());
+  final CartLocalDatabase db;
 
-  void addProductToCart(Product product) {
+  CartCubit(this.db) : super(ShoppingCart.empty()) {
+    _loadCartFromDatabase();
+  }
+
+  Future<void> _loadCartFromDatabase() async {
+    final items = await db.getCartItems();
+    emit(ShoppingCart(items: items));
+  }
+
+  Future<void> addProductToCart(Product product) async {
     final items = state.items;
 
     final existingItem = items.firstWhere(
@@ -15,14 +25,19 @@ class CartCubit extends Cubit<ShoppingCart> {
       orElse: () => ShoppingCartItem(product: product, quantity: 0),
     );
 
-    existingItem.quantity == 0
-        ? items.add(ShoppingCartItem(product: product, quantity: 1))
-        : existingItem.quantity++;
+    if (existingItem.quantity == 0) {
+      final newItem = ShoppingCartItem(product: product, quantity: 1);
+      items.add(newItem);
+      await db.addCartItem(newItem);
+    } else {
+      existingItem.quantity++;
+      await db.updateCartItem(existingItem);
+    }
 
     emit(ShoppingCart(items: items));
   }
 
-  void removeProductFromCart(Product product) {
+  Future<void> removeProductFromCart(Product product) async {
     final items = state.items;
 
     final existingItem = items.firstWhere(
@@ -30,10 +45,13 @@ class CartCubit extends Cubit<ShoppingCart> {
       orElse: () => ShoppingCartItem(product: product, quantity: 0),
     );
 
-    existingItem.quantity > 1
-        ? existingItem.quantity--
-        : items.remove(existingItem);
-
+    if (existingItem.quantity > 1) {
+      existingItem.quantity--;
+      await db.updateCartItem(existingItem);
+    } else {
+      items.remove(existingItem);
+      await db.deleteCartItem(existingItem.product.id);
+    }
     emit(ShoppingCart(items: items));
   }
 

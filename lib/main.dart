@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'bloc/cart/cart_cubit.dart';
 import 'bloc/products/products_cubit.dart';
+import 'data_source/local/cart_local_database.dart';
 import 'get_it/injection_container.dart' as di;
+import 'get_it/injection_container.dart';
 import 'screens/navigation_screen.dart';
 
 Future<void> main() async {
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
           create: (_) => ProductsCubit()..getProducts(),
         ),
         BlocProvider(
-          create: (_) => CartCubit(),
+          create: (_) => CartCubit(getIt<CartLocalDatabase>()),
         ),
       ],
       child: MaterialApp(

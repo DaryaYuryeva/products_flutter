@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 
 import '../../core/constants.dart';
 import '../../models/products/product.dart';
-import '../../models/products/products.dart';
 
 abstract class ProductsRemoteDataSource {
   Future<List<Product>> loadProducts();
