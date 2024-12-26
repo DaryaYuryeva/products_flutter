@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/cart/shopping_cart_item.dart';
+import '../../../models/cart/shopping_cart_item.dart';
 import '../add_to_cart/change_quantity/quantity_widget.dart';
 import '../common/image/single_image_widget.dart';
 

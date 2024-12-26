@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data_source/remote/products_remote_data_source.dart';
+import '../../../data_source/remote/products_remote_data_source.dart';
 import 'products_state.dart';
 
 /// A Cubit responsible for managing the state of product data.

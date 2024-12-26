@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data_source/local/cart_local_database.dart';
-import '../../models/cart/shopping_cart.dart';
-import '../../models/cart/shopping_cart_item.dart';
-import '../../models/products/product.dart';
+import '../../../data_source/local/cart_local_database.dart';
+import '../../../models/cart/shopping_cart.dart';
+import '../../../models/cart/shopping_cart_item.dart';
+import '../../../models/products/product.dart';
 
 /// A Cubit for managing the state of the shopping cart.
 class CartCubit extends Cubit<ShoppingCart> {

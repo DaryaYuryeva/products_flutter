@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../bloc/cart/cart_cubit.dart';
+import '../../../../models/cart/shopping_cart_item.dart';
 import '../../../../models/products/product.dart';
-import '../../../models/cart/shopping_cart_item.dart';
+import '../../../bloc/cart/cart_cubit.dart';
 import '../change_quantity/quantity_widget.dart';
 import 'add_to_cart_button.dart';
 

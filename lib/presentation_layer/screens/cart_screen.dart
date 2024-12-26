@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../models/cart/shopping_cart.dart';
 import '../bloc/cart/cart_cubit.dart';
-import '../models/cart/shopping_cart.dart';
 import '../views/shopping_cart/empty_cart_widget.dart';
 import '../views/shopping_cart/shopping_cart_card_widget.dart';
 

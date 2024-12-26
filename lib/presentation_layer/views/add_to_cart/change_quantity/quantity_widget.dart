@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../bloc/cart/cart_cubit.dart';
 import '../../../../models/cart/shopping_cart_item.dart';
+import '../../../bloc/cart/cart_cubit.dart';
 import 'plus_minus_button.dart';
 
 class QuantityWidget extends StatelessWidget {

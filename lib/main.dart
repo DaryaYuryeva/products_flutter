@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc/cart/cart_cubit.dart';
-import 'bloc/products/products_cubit.dart';
 import 'data_source/local/cart_local_database.dart';
 import 'data_source/remote/products_remote_data_source.dart';
 import 'get_it/injection_container.dart' as di;
 import 'get_it/injection_container.dart';
-import 'screens/navigation_screen.dart';
+import 'presentation_layer/bloc/cart/cart_cubit.dart';
+import 'presentation_layer/bloc/products/products_cubit.dart';
+import 'presentation_layer/screens/navigation_screen.dart';
 
 ///The main entry point of the application.
 Future<void> main() async {
