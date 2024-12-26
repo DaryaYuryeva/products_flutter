@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'data_source/local/cart_local_database.dart';
 import 'data_source/remote/products_remote_data_source.dart';
-import 'get_it/injection_container.dart' as di;
 import 'get_it/injection_container.dart';
 import 'presentation_layer/bloc/cart/cart_cubit.dart';
 import 'presentation_layer/bloc/products/products_cubit.dart';
@@ -14,7 +13,7 @@ Future<void> main() async {
   // Ensures Flutter framework is fully initialized before running asynchronous code.
   WidgetsFlutterBinding.ensureInitialized();
   // Initialize DI container with getIt.
-  await di.init();
+  await init();
   // Launch the application.
   runApp(const MyApp());
 }
